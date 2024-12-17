@@ -34,7 +34,6 @@ final class BaseServiceComb<T: Decodable> {
     }
     
     // MARK: - APIManagerProtocol
-    // Publisher que devuelve un array de CharacterJson
     func fetch() -> AnyPublisher<T, Error> {
         guard let url = BaseServiceComb<T>.createURLFromParameters(parameters: [:], pathparam: getPathParam()) else {
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
@@ -49,7 +48,7 @@ final class BaseServiceComb<T: Decodable> {
     
     func fetchFut() -> Future<T, Error> {
         return Future { ( promise: @escaping (Result<T, Error>) -> Void) in
-            nonisolated(unsafe) let promise = promise
+               nonisolated(unsafe) let promise = promise
 
                 guard let url = BaseServiceComb<T>.createURLFromParameters(parameters: [:], pathparam: self.getPathParam())else {
                     return promise(.failure(URLError(.badURL)))

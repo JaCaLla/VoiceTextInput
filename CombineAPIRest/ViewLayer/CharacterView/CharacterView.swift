@@ -26,9 +26,11 @@ struct CharacterView: View {
         }
         .padding()
         .onAppear {
-            Task {
-                 await viewModel.fetch()
-            }
+//            Task {
+//                 await viewModel.fetch()
+//            }
+//            viewModel.fetchComb()
+            viewModel.fetchFut()
         }
     }
     
